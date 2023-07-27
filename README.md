@@ -40,14 +40,24 @@ Create a man page for your function.
 Files
 
 _printf.c
-_putchar.c - 
+
+_putchar.c
+
 binary.c
+
 char.c
+
 hex.c
+
 len.c
+
 octal.c
+
 unsigned.c
-man 3 print
+
+man 3 printf
+
 main.h
+
 main.c
 
