@@ -8,8 +8,8 @@
 
 int write_char(va_list list)
 {
-	int count;
 	char c = va_arg(list, int);
+	int count = 0;
 
 	count++;
 	putchar(c);

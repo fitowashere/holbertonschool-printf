@@ -16,10 +16,10 @@ char *input;
 int (*f)(va_list);
 } ck;
 /*start of variatic function*/
-int print_op(const char *format, ck *print_data, va_list list); // define this
-int write_char(va_list list); // character just needs one entry
-int write_string(va_list list); // string just needs one entry
-int write_number(va_list list); // integer needs one entry
+int print_op(const char *format, ck *print_data, va_list list);
+int write_char(va_list list);
+int write_string(va_list list);
+int write_number(va_list list);
 
 
 /* check if i can use function pointers this is part of the extra fucntions
