@@ -1,74 +1,30 @@
 #include "main.h"
 
-/*
- * _printf - prints output according to format
- * @format: stores data
- * Return: results
+/**
+ * _printf- gets input form main
+ *@format: store input
+ *Return: results
  */
 
-void get_op(const char* format, va_list args)
+int _printf(const char *format, ...)
 {
-    int i, count, num;
-    char *s;
-    char c;
+	va_list list;
+	int a = 0;
+	ck ops[] = {
+		{"c", write_char},
+		{"s", write_string},
+		{"d", write_number},
+		{"i", write_number},
+		{NULL, NULL}
+	};
 
-    if (*format == 'i' || *format == 'd')
-       {
-         num = va_arg(args, int);
-        char numstrn[20];
-        count = 0;
+	if (format == NULL)
+	{
+		return (-1);
+	}
 
-        if (num < 0)
-        {
-            num = -num;
-            write(1, "-", 1);  // Write negative sign
-        }
-
-        while (num != 0)
-        {
-            numstrn[count++] = '0' + (num % 10);
-            num /= 10;
-        }
-
-        for (i = count - 1; i >= 0; i--)
-           {
-            write(1, &numstrn[i], 1);  // Write each digit
-        }
-    }
-    else if (*format == 's')
-       {
-        // Handle %s format specifier
-         s = va_arg(args, char*);
-        write(1, s, strlen(s));
-    }
-       else if (format == 'c')
-       {
-        // Handle %c format specifier
-         c = va_arg(args, int);
-        write(1, &c, 1);
-    }
-       else if (*format == '%')
-       {
-        // Handle %% format specifier
-        write(1, "%", 1);
-    }
-       else
-       {
-        write(1, format, 1);  // Write non-format characters
-    }
+	va_start(list, format);
+	a = print_op(format, ops, list);
+	va_end(list);
+	return (a);
 }
-
-int _printf(const char* format, ...)
-{
-    va_list args;
-    va_start(args, format);
-
-    while (*format != '\0')
-       {
-        get_op(format, args);
-        format++;
-    }
-
-    va_end(args);
-}
-

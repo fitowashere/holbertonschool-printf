@@ -1,19 +1,34 @@
-#ifndef MAIN_H
-#define MAIN_H
-
-#include <stdio.h>
+#ifndef main_h
+#define main_h
 #include <stdarg.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
-#include <limits.h>
+#include <string.h>
+#include <ctype.h>
 
-int _putchar(char character);
-int printf_char(va_list args, int printed);
-int printf_binary(unsigned int num, int printed);
+char _putchar(char c);
 int _printf(const char *format, ...);
-int _x(unsigned int num, int printed, int uppercase);
-int printf_octal(unsigned int num, int printed);
-int printf_unsigned(unsigned int num, int printed);
-void get_op(const char* format, va_list args);
 
+typedef struct check
+{
+char *input;
+int (*f)(va_list);
+} ck;
+/*start of variatic function*/
+int print_op(const char *format, ck *print_data, va_list list); // define this
+int write_char(va_list list); // character just needs one entry
+int write_string(va_list list); // string just needs one entry
+int write_number(va_list list); // integer needs one entry
+
+
+/* check if i can use function pointers this is part of the extra fucntions
+void write_string(const char *str);
+void write_char(char c);
+void write_number(int num, int base);
+void write_hex(unsigned int num, int uppercase);
+void write_pointer(void *ptr);
+int get_op(const char* format, va_list args);
+*/
 #endif
 
