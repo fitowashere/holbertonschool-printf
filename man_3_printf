@@ -1,0 +1,41 @@
+.TH _printf  "July 2023" "Linux" "Man Page-user manual"
+.SH NAME
+_printf - A simplified implementation of the _printf function.
+
+.SH SYNOPSIS
+.B #include\ "main.h"
+.P
+.B -printf
+.I Format [Argument]
+
+.SH COMPILE
+gcc -Wall -Werror -Wextra -pedantic -std=gnu89 -Wno-format *.c
+
+.SH DESCRIPTION
+The _printf command is a simplified implementation of the _printf function. It allgows printing strings and different data types to the standard output. The format string is similar to that of \fIprintf\fP and can contain format specifiers for various data types.
+g
+.TP
+In this version _printf is behaving like printf from the standard library.
+.RE
+The format string containing format specifiers and arguments to be printed. Format specifiers consist of a percent symbol followed by a character representing the data type to be printed. The following data types are supported:
+
+.TP
+.B \%c
+Prints a character.
+
+.TP
+.B \%i
+Prints a signed integer.
+
+.TP
+.B \%s
+Prints a string of text.
+
+.SH RETURN
+Returns number of times printed
+
+.SH BUGS
+No bugs detected yet
+
+.SH AUTHOR
+Hector Rodriguez & Oscar Morell
