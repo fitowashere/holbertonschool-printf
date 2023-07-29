@@ -22,13 +22,14 @@ int write_string(va_list list);
 int write_number(va_list list);
 
 
-/* check if i can use function pointers this is part of the extra fucntions
-void write_string(const char *str);
-void write_char(char c);
-void write_number(int num, int base);
-void write_hex(unsigned int num, int uppercase);
-void write_pointer(void *ptr);
-int get_op(const char* format, va_list args);
-*/
+/**
+ * check if i can use function pointers this is part of the extra fucntions
+ * void write_string(const char *str);
+ * void write_char(char c);
+ * void write_number(int num, int base);
+ * void write_hex(unsigned int num, int uppercase);
+ * void write_pointer(void *ptr);
+ * int get_op(const char* format, va_list args);
+ */
 #endif
 

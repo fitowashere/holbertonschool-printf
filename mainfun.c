@@ -25,17 +25,18 @@ int write_char(va_list list)
 int write_string(va_list list)
 {
 	char *s = va_arg(list, char *);
-	int count;
+	int count = 0;
 
 	if (*s == '\0')
 	{
 		write(1, "(nil)", 5);
-		return (0);
+		return (5);
 	}
 	else
 		while (*s != '\0')
 		{
-			count += putchar(*s++);
+			putchar(*s++);
+			count++;
 		}
 	return (count);
 }
