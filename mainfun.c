@@ -47,48 +47,33 @@ int write_string(va_list list)
 
 int write_number(va_list list)
 {
-	int num;
-	char num_str[12];
-	int len = 0, i;
-	int count = 0;
-	char min_str[] = "-2147483649";
+	int number = va_arg(list, int);
+	unsigned int absolute_value;
+	char digit;
+	int exponent = 1;
+	int lenght = 0;
 
-	num = va_arg(list, int);
-	if (num == 0)
+	if (number < 0)
 	{
-		count++;
-		putchar('0');
-		return(count);
+		digit = '-';
+		lenght = lenght + write(1, &digit, 1);
+		absolute_value = number * -1;
+	}
 
-	}
-	if (num == INT_MIN)
+	else
+		absolute_value = number;
+
+	while (absolute_value / exponent > 9)
 	{
-		for (i = 0; i < 11; i++)
-		{
-			putchar(min_str[i]);
-			count++;
-		}
-		return(count);
+		exponent *= 10;
 	}
-		/*if negative prints the negative sign and cancels the negative of the input*/
-		if (num < 0)
-		{
-			putchar('-');
-			num = -num;
-			count++;
-		}
-		/*stores the input from right to left in new string*/
-		while (num != 0)
-		{
-			num_str[len++] = num % 10 + '0';
-			num /= 10;
-		}
-		/*prints in revers to get the correct order*/
-		for (i = len - 1; i >= 0; i--)
-		{
-			putchar(num_str[i]);
-			count++;
-		}
-		return (count);
-	
+
+	while (exponent != 0)
+	{
+		digit = absolute_value / exponent + '0';
+		lenght = lenght + write(1, &digit, 1);
+		absolute_value = absolute_value % exponent;
+		exponent = exponent / 10;
+	}
+	return (lenght);
 }
