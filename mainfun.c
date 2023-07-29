@@ -50,6 +50,7 @@ int write_number(va_list list)
 	int num;
 	char num_str[12];
 	int len = 0, i;
+	int count = 0;
 
 	num = va_arg(list, int);
 	if (num == 0)
@@ -61,6 +62,7 @@ int write_number(va_list list)
 	{
 		putchar('-');
 		num = -num;
+		count++;
 	}
 	/*stores the input from right to left in new string*/
 	while (num != 0)
@@ -72,7 +74,8 @@ int write_number(va_list list)
 	for (i = len - 1; i >= 0; i--)
 	{
 		putchar(num_str[i]);
+		count++;
 	}
-	return (len);
+	return (count);
 }
 
