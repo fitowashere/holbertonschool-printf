@@ -27,7 +27,6 @@ int write_string(va_list list)
 	if (s == NULL)
 	{
 		s = "(null)";
-		count++;
 	}
 	while (*s != '\0')
 	{
