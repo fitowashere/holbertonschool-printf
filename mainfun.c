@@ -40,7 +40,7 @@ int write_string(va_list list)
 }
 
 /**
- * write_number- gets input
+ *write_number- gets input
  *@list: store input
  *Return: results
  */
@@ -67,21 +67,18 @@ int write_number(va_list list)
 			putchar(min_str[i]);
 			count++;
 		}
-		return(count);
+		return (count);
 	}
-	/*if negative prints the negative sign and cancels the negative of the input*/
 	if (num < 0)
 	{
 		putchar('-');
 		num = -num;
 	}
-	/*stores the input from right to left in new string*/
 	while (num != 0)
 	{
 		num_str[len++] = num % 10 + '0';
 		num /= 10;
 	}
-	/*prints in revers to get the correct order*/
 	for (i = len - 1; i >= 0; i--)
 	{
 		putchar(num_str[i]);
