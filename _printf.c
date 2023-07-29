@@ -27,10 +27,12 @@ int _printf(const char *format, ...)
 				count += write_string(list);
 			} else if (a == 'd' || a == 'i') {
 				count += write_number(list);
-			} else {
-				putchar('%');
+			} else if (a == '%') {
 				putchar(a);
-				count += 2;
+				count++;
+			} else {
+				putchar(a);
+				count ++;
 			}
 		} else {
 			putchar(a);
