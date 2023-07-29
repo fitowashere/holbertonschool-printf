@@ -39,6 +39,12 @@ int write_string(va_list list)
 	return (count);
 }
 
+/**
+ * write_number- gets input
+ *@list: store input
+ *Return: results
+ */
+
 int write_number(va_list list)
 {
 	int num;
@@ -54,7 +60,6 @@ int write_number(va_list list)
 		count++;
 		return (count);
 	}
-
 	if (num == INT_MIN)
 	{
 		for (i = 0; i < 11; i++)
@@ -64,7 +69,6 @@ int write_number(va_list list)
 		}
 		return(count);
 	}
-
 	/*if negative prints the negative sign and cancels the negative of the input*/
 	if (num < 0)
 	{
@@ -81,8 +85,9 @@ int write_number(va_list list)
 	for (i = len - 1; i >= 0; i--)
 	{
 		putchar(num_str[i]);
+		count++;
 	}
-	return (len);
+	return (count);
 }
 
 
