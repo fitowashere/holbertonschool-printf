@@ -33,6 +33,7 @@ int print_op(const char *format, ck *print_data, va_list list);
 int write_char(va_list list);
 int write_string(va_list list);
 int write_number(va_list list);
+int print_mod(va_list list);
 
 #endif
 

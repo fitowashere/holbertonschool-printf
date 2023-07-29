@@ -45,44 +45,56 @@ int write_string(va_list list)
 
 int write_number(va_list list)
 {
-	int num;
-	char num_str[12];
-	int len = 0, i;
-	int count = 0;
-	char min_str[] = "-2147483649";
+    int n = va_arg(list, int);
+    int num, last = n % 10, digit, exp = 1;
+    int i = 1;
 
-	num = va_arg(list, int);
-	if (num == 0)
-	{
-		count++;
-		putchar('0');
-		return(count);
-	}
-	if (num == INT_MIN)
-	{
-		for (i = 0; i < 11; i++)
-		{
-			putchar(min_str[i]);
-			count++;
-		}
-		return(count);
-	}
-		if (num < 0)
-		{
-			putchar('-');
-			num = -num;
-			count++;
-		}
-		while (num != 0)
-		{
-			num_str[len++] = num % 10 + '0';
-			num /= 10;
-		}
-		for (i = len - 1; i >= 0; i--)
-		{
-			putchar(num_str[i]);
-			count++;
-		}
-		return (count);
+    n = n / 10;
+    num = n;
 
+    if (last < 0)
+    {
+        putchar('-');
+        num = -num;
+        n = -n;
+        last = -last;
+        i++;
+    }
+    if (num > 0)
+    {
+        while (num / 10 != 0)
+        {
+            exp = exp * 10;
+            num = num / 10;
+        }
+        num = n;
+        while (exp > 0)
+        {
+            digit = num / exp;
+            putchar(digit + '0');
+            num = num - (digit * exp);
+            exp = exp / 10;
+            i++;
+        }
+    }
+    putchar(last + '0');
+
+    return (i);
+
+}
+
+/**
+ * print_mod - a function that prints a %
+ * @args: argument of the list
+ */
+int print_mod(va_list args)
+{
+    /*Variables*/
+    int count = 0;
+    char character = '%';
+
+    write(STDOUT_FILENO, &character, 1);
+    count++;
+    (void)args;
+    return (count);
 }
