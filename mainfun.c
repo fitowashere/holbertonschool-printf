@@ -55,7 +55,10 @@ int write_number(va_list list)
 	num = va_arg(list, int);
 	if (num == 0)
 	{
-		return (putchar('0'));
+		count++;
+		putchar('0');
+		return(count);
+
 	}
 	/*if negative prints the negative sign and cancels the negative of the input*/
 	if (num < 0)
