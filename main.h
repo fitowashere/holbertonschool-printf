@@ -10,26 +10,28 @@
 char _putchar(char c);
 int _printf(const char *format, ...);
 
+/**
+ *typedef struct check- creats struck
+ *@input: stores data
+ *@f: used to call the functions
+ */
+
+/**
+ *struct check ck - new name to call the struck
+ */
+
+
 typedef struct check
 {
 char *input;
 int (*f)(va_list);
 } ck;
+
 /*start of variatic function*/
 int print_op(const char *format, ck *print_data, va_list list);
 int write_char(va_list list);
 int write_string(va_list list);
 int write_number(va_list list);
 
-
-/**
- * check if i can use function pointers this is part of the extra fucntions
- * void write_string(const char *str);
- * void write_char(char c);
- * void write_number(int num, int base);
- * void write_hex(unsigned int num, int uppercase);
- * void write_pointer(void *ptr);
- * int get_op(const char* format, va_list args);
- */
 #endif
 

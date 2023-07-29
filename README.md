@@ -38,26 +38,35 @@ Create a man page for your function.
 
 
 Files
-
 _printf.c
-
 _putchar.c
-
 binary.c
-
 char.c
-
 hex.c
-
 len.c
-
 octal.c
-
 unsigned.c
-
 man 3 printf
-
 main.h
-
 main.c
+get_op_function.c
+mainfun.c
 
+
+Example
+
+Example for char:
+Input: _printf("%c", H);
+Output: H
+
+Example for string:
+Input: _printf("%s", "I am a string !");
+Output: I am a string !
+
+Example for digit:
+Input: _printf("%d", -762534);
+Output: -762534
+
+Example for interger:
+Input: _printf("%i", 39);
+Output: 39
