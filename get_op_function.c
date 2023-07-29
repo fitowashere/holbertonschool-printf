@@ -8,7 +8,7 @@
  *Return: results
  */
 
-int print_op(const char *format,ck *print_data, va_list list)
+int print_op(const char *format, ck *print_data, va_list list)
 {
 	char a;
 	int count = 0, b = 0, c = 0;
