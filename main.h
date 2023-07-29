@@ -24,12 +24,12 @@ int _printf(const char *format, ...);
 
 typedef struct check
 {
-const char *input;
+char *input;
 int (*f)(va_list);
 } ck;
 
 /*start of variatic function*/
-int print_op(const char *format, const ck *print_data, va_list list);
+int print_op(const char *format, ck *print_data, va_list list);
 int write_char(va_list list);
 int write_string(va_list list);
 int write_number(va_list list);
