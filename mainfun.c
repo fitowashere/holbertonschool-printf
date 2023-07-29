@@ -9,11 +9,8 @@
 int write_char(va_list list)
 {
 	char c = va_arg(list, int);
-	int count = 0;
-
-	count++;
 	putchar(c);
-	return (count);
+	return (1);
 }
 
 /**
@@ -30,10 +27,12 @@ int write_string(va_list list)
 	if (s == NULL)
 	{
 		s = "(null)";
+		count++;
 	}
 	while (*s != '\0')
 	{
-		putchar(*s++);
+		putchar(*s);
+		s++;
 		count++;
 	}
 	return (count);

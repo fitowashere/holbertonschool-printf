@@ -1,30 +1,46 @@
 #include "main.h"
 
 /**
- * _printf- gets input form main
+ *print_op- gets inputs
  *@format: store input
+ *@print_data: stores structure
+ *@list: stores list
  *Return: results
  */
 
 int _printf(const char *format, ...)
 {
-	va_list list;
-	int a = 0;
-	ck ops[] = {
-		{"c", write_char},
-		{"s", write_string},
-		{"d", write_number},
-		{"i", write_number},
-		{NULL, NULL}
-	};
+	int count;
+	char a;
+	int b = 0;
 
-	if (format == NULL)
-	{
-		return (-1);
+	va_list list;
+	va_start(list, format);
+
+	while ((a = format[b]) != '\0') {
+		if (a == '%') {
+			b++;
+			a = format[b];
+			if (a == 'c') {
+				count += write_char(list);
+			} else if (a == 's') {
+				count += write_string(list);
+			} else if (a == 'd' || a == 'i') {
+				count += write_number(list);
+			} else {
+				putchar('%');
+				putchar(a);
+				count += 2;
+			}
+		} else {
+			putchar(a);
+			count++;
+		}
+		b++;
 	}
 
-	va_start(list, format);
-	a = print_op(format, ops, list);
 	va_end(list);
-	return (a);
+	return (count);
 }
+
+
