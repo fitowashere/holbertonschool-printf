@@ -27,17 +27,15 @@ int write_string(va_list list)
 	char *s = va_arg(list, char *);
 	int count = 0;
 
-	if (*s == '\0')
+	if (s == NULL)
 	{
-		write(1, "(nil)", 5);
-		return (5);
+		s = "(null)";
 	}
-	else
-		while (*s != '\0')
-		{
-			putchar(*s++);
-			count++;
-		}
+	while (*s != '\0')
+	{
+		putchar(*s++);
+		count++;
+	}
 	return (count);
 }
 
