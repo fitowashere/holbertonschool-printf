@@ -87,7 +87,7 @@ int write_number(va_list list)
  * @list: argument of the list
  * Return: results
  */
-int print_mod(va_list args)
+int print_mod(va_list list)
 {
 	/*Variables*/
 	int count = 0;
@@ -95,6 +95,6 @@ int print_mod(va_list args)
 
 	write(STDOUT_FILENO, &character, 1);
 	count++;
-	(void)args;
+	(void)list;
 	return (count);
 }
