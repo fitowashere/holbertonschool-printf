@@ -1,53 +1,49 @@
 #include "main.h"
 
 /**
- *print_op- gets inputs
- *@format: store input
- *@print_data: stores structure
- *@list: stores list
+ *_printf- gets inputs
+ *@format: store inpute
  *Return: results
  */
 
 int _printf(const char *format, ...)
 {
-	int i = 0, j = 0;
-	int printed_chars = 0;
-	int found = 0;
-	ck func_type[] = {
-		{"c", write_char},
-		{"s", write_string},
-		{"%", print_mod},
-		{"d", write_number},
-		{"i", write_number},
-		{NULL, NULL}};
-	va_list list;
-	va_start(list, format);
+	if (format != NULL)
+	{
+		int i = 0, printed_chars = 0;
+		va_list list;
+		int (*this_thing)(va_list);
 
-	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
-		return (-1);
-	while (format != NULL && format[i]) {
-		if (format[i] == '%') {
-			i++;
-			while (format[i] == ' ')
-				i++;
-			found = 0;
-			for (j = 0; j < 5; j++) {
-				if (format[i] == *func_type[j].input) {
-					printed_chars += func_type[j].f(list);
-					found = 1;
-					break;
+		va_start(list, format);
+		if (format[0] == '%' && format[1] == '\0')
+			return (-1);
+		while (format != NULL && format[i] != '\0')
+		{
+			if (format[i] == '%')
+			{
+				if (format[i + 1] == '%')
+				{
+					printed_chars += putchar(format[i]);
+					i += 2;
 				}
-			} if (!found && format[i] != '\0') {
-				putchar('%');
-				printed_chars++;
-				i--;
-			}
-		} else {
-			putchar(format[i]);
-			printed_chars++;
-		}
-		i++;
-	}
-	va_end(list);
-	return (printed_chars);
+				else
+				{
+					this_thing = get_print(format[i + 1]);
+					if (this_thing)
+						printed_chars += this_thing(list);
+					else
+						printed_chars = putchar(format[i]) + putchar(format[i + 1]);
+					i += 2;
+				} /*end if else*/
+			} /*end if */
+			else
+			{
+				printed_chars += putchar(format[i]);
+				i++;
+			} /*end outer if else*/
+		} /*end while*/
+		va_end(list);
+		return (printed_chars);
+	} /*end function*/
+	return (-1);
 }
