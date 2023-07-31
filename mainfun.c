@@ -8,12 +8,10 @@
 
 int write_char(va_list list)
 {
-	/*variables*/
-	int count = 0;
+	char c = va_arg(list, int);
 
-	putchar(va_arg(list, int));
-	count++;
-	return (count);
+	putchar(c);
+	return (1);
 }
 
 /**
@@ -24,15 +22,17 @@ int write_char(va_list list)
 
 int write_string(va_list list)
 {
-	char *string = va_arg(list, char *);
+	char *s = va_arg(list, char *);
 	int count = 0;
-	int i = 0;
 
-	if (string == NULL)
-		string = "(null)";
-	for (i = 0; string[i]; i++)
+	if (s == NULL)
 	{
-		write(1, &string[i], 1);
+		s = "(null)";
+	}
+	while (*s != '\0')
+	{
+		putchar(*s);
+		s++;
 		count++;
 	}
 	return (count);
@@ -87,8 +87,7 @@ int write_number(va_list list)
  * @list: argument of the list
  * Return: results
  */
-
-int print_mod(va_list list)
+int print_mod(va_list args)
 {
 	/*Variables*/
 	int count = 0;
@@ -96,29 +95,6 @@ int print_mod(va_list list)
 
 	write(STDOUT_FILENO, &character, 1);
 	count++;
-	(void)list;
-	return (count);
-}
-
-/**
- * print_reverse- gets input
- * @list: stores input
- * Return: results
- */
-
-int print_reverse(va_list list)
-{
-	char *string = va_arg(list, char *);
-	int count = 0;
-
-	unsigned int long i = 0, size = strlen(string);
-
-	if (string == NULL)
-		string = "(null)";
-	for (i = size; i > 0; i--)
-	{
-		putchar(string[i]);
-		count++;
-	}
+	(void)args;
 	return (count);
 }
