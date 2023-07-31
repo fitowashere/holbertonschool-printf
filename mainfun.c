@@ -91,9 +91,10 @@ int print_mod(va_list list)
 {
 	/*Variables*/
 	int count = 0;
-	char character = '%';
+	char c = '%';
 
-	write(STDOUT_FILENO, &character, 1);
+	/* write(STDOUT_FILENO, &character, 1);*/
+	putchar(c);
 	count++;
 	(void)list;
 	return (count);
